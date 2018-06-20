@@ -55,7 +55,7 @@ if (program.init) {
     nameQuestion,
     versionQuestion,
     portQuestion,
-    templateQuestion,
+    // templateQuestion,
     remQuestion
   ]).then(function (answers) {
     const spinner = ora('开始创建喔趣前端项目').start();
