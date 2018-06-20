@@ -1,0 +1,12 @@
+{
+  "name": "woqu-cli",
+  "version": "1.0.0",
+  "description": "生成公司前端项目脚手架",
+  "main": "index.js",
+  "bin": "./bin/build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "丁少雄",
+  "license": "ISC"
+}
