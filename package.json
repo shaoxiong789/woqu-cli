@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "生成公司前端项目脚手架",
   "main": "index.js",
-  "bin": "./bin/build.js",
+  "bin": {
+    "woqu-build": "./bin/build.js",
+    "wb": "./bin/build.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
