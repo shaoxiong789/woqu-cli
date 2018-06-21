@@ -6,8 +6,10 @@ const inquirer = require('inquirer');
 const download = require('download-git-repo');
 const chalk = require('chalk');
 const ora = require('ora');
+const Package = require('../package.json')
 
-program.version('0.0.1')
+
+program.version(Package.version)
 .option('i, init', '初始化项目')
 
 program
@@ -17,14 +19,14 @@ const nameQuestion = {
   type: 'input',
   message: `项目名称`,
   name: 'name',
-  default: 'x-build'
+  default: 'woqu-build'
 }
 
 const versionQuestion = {
   type: 'input',
   message: `初始版本：`,
   name: 'version',
-  default: '0.01'
+  default: '0.0.1'
 }
 
 const portQuestion = {
@@ -34,6 +36,13 @@ const portQuestion = {
   default: '8090'
 };
 
+const powerQuestion = {
+  type: 'input',
+  message: `权限代码：`,
+  name: 'powerId',
+  default: ''
+}
+
 // const templateQuestion = {
 //   type: 'confirm',
 //   message: `使用pug(jade)模版引擎? `,
@@ -41,12 +50,12 @@ const portQuestion = {
 //   default: true
 // };
 
-const remQuestion = {
-  type: 'confirm',
-  message: `使用px2rem布局? `,
-  name: 'rem',
-  default: true
-};
+// const remQuestion = {
+//   type: 'confirm',
+//   message: `使用px2rem布局? `,
+//   name: 'rem',
+//   default: true
+// };
 
 
 
@@ -55,8 +64,9 @@ if (program.init) {
     nameQuestion,
     versionQuestion,
     portQuestion,
+    powerQuestion,
     // templateQuestion,
-    remQuestion
+    // remQuestion
   ]).then(function (answers) {
     const spinner = ora('开始创建喔趣前端项目').start();
     download('shaoxiong789/woqu', answers.name, function (err) {
@@ -65,7 +75,7 @@ if (program.init) {
         console.info('');
         console.info(chalk.green('-----------------------------------------------------'));
         console.info('');
-        spinner.succeed(['项目创建成功,请继续进行以下操作:'])
+        spinner.succeed(['喔趣前端工程创建成功,请继续进行以下操作:'])
         console.info('');
         console.info(chalk.cyan(` -  cd ${answers.name}`));
         console.info(chalk.cyan(` -  npm install / yarn`));
@@ -86,6 +96,7 @@ if (program.init) {
           _data.name = answers.name
           _data.version = answers.version
           _data.port = answers.port
+          _data.powerId = answers.powerId
           // _data.template = answers.template ? "pug" : "html"
           _data.rem = answers.rem
           let str = JSON.stringify(_data, null, 4);
